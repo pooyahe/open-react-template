@@ -1,93 +1,59 @@
-@import 'tailwindcss';
-
-/* Additional styles */
-@import './additional-styles/utility-patterns.css' layer(components);
-@import './additional-styles/theme.css';
-
-@plugin "@tailwindcss/forms" {
-  strategy: base;
-}
+@import "tailwindcss";
 
 @theme {
-  --font-inter: var(--font-inter), sans-serif;
-  --font-nacelle: var(--font-nacelle), sans-serif;
-
-  --text-xs: 0.8125rem;
-  --text-xs--line-height: 1.5384;
-  --text-sm: 0.875rem;
-  --text-sm--line-height: 1.5715;
-  --text-base: 0.9375rem;
-  --text-base--line-height: 1.5333;
-  --text-base--letter-spacing: -0.0125em;
-  --text-lg: 1.125rem;
-  --text-lg--line-height: 1.5;
-  --text-lg--letter-spacing: -0.0125em;
-  --text-xl: 1.25rem;
-  --text-xl--line-height: 1.5;
-  --text-xl--letter-spacing: -0.0125em;
-  --text-2xl: 1.5rem;
-  --text-2xl--line-height: 1.415;
-  --text-2xl--letter-spacing: -0.0268em;
-  --text-3xl: 1.75rem;
-  --text-3xl--line-height: 1.3571;
-  --text-3xl--letter-spacing: -0.0268em;
-  --text-4xl: 2.5rem;
-  --text-4xl--line-height: 1.1;
-  --text-4xl--letter-spacing: -0.0268em;
-  --text-5xl: 3.5rem;
-  --text-5xl--line-height: 1;
-  --text-5xl--letter-spacing: -0.0268em;
-  --text-6xl: 4rem;
-  --text-6xl--line-height: 1;
-  --text-6xl--letter-spacing: -0.0268em;
-  --text-7xl: 4.5rem;
-  --text-7xl--line-height: 1;
-  --text-7xl--letter-spacing: -0.0268em;
-
-  --animate-shine: shine 5s ease-in-out 500ms infinite;
-  --animate-gradient: gradient 6s linear infinite;
-
-  @keyframes shine {
-    0% {
-      top: 0;
-      transform: scaleY(5);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.8;
-    }
-    20% {
-      top: 100%;
-      transform: scaleY(10);
-      opacity: 0;
-    }
-    100% {
-      top: 100%;
-      transform: scaleY(1);
-      opacity: 0;
-    }
-  }
-  @keyframes gradient {
-    to {
-      background-position: 200% center;
-    }
-  }
+  --font-site: var(--font-site), sans-serif;
+  --color-ink: #132235;
+  --color-deep-navy: #0b1f33;
+  --color-accent-blue: #356ae6;
+  --color-accent-hover: #2855bf;
+  --color-soft-blue: #eaf0ff;
+  --color-warm-paper: #f3eee7;
+  --color-page-bg: #f8f9f7;
+  --color-muted: #5f6b78;
+  --color-border: #dce2e8;
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+:root {
+  --ink: #132235;
+  --deep-navy: #0b1f33;
+  --accent-blue: #356ae6;
+  --accent-hover: #2855bf;
+  --soft-blue: #eaf0ff;
+  --warm-paper: #f3eee7;
+  --page-bg: #f8f9f7;
+  --muted: #5f6b78;
+  --border: #dce2e8;
+}
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+  * { border-color: var(--border); }
+  html { scroll-behavior: smooth; }
+  body { background: var(--page-bg); }
+  :focus-visible { outline: 3px solid var(--accent-blue); outline-offset: 3px; }
+  ::selection { background: var(--soft-blue); color: var(--deep-navy); }
 }
+
+@layer components {
+  .site-container { width: min(100% - 2.5rem, 80rem); margin-inline: auto; }
+  .section-space { padding-block: 5.5rem; }
+  .button-primary, .button-secondary, .button-small { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; border-radius: 0.35rem; padding-inline: 1.25rem; font-weight: 600; transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease; }
+  .button-primary, .button-small { background: var(--accent-blue); color: white; }
+  .button-primary:hover, .button-small:hover { background: var(--accent-hover); }
+  .button-secondary { border: 1px solid var(--border); background: white; color: var(--ink); }
+  .button-secondary:hover { border-color: var(--accent-blue); color: var(--accent-hover); }
+  .button-secondary-dark { border-color: rgba(255,255,255,.45); background: transparent; color: white; }
+  .button-secondary-dark:hover { border-color: white; background: rgba(255,255,255,.12); color: white; }
+  .button-small { min-height: 2.65rem; padding-inline: 1rem; font-size: .9rem; }
+  .nav-link, .footer-link { color: var(--muted); transition: color 180ms ease; }
+  .nav-link:hover, .footer-link:hover { color: var(--accent-hover); }
+  .mobile-nav-link { border-bottom: 1px solid var(--border); padding-block: .85rem; color: var(--ink); font-weight: 600; }
+  .menu-button { display: inline-flex; min-height: 2.75rem; min-width: 2.75rem; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: .35rem; color: var(--ink); }
+  .brand-mark { display: inline-flex; align-items: center; gap: .65rem; color: var(--ink); font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+  .brand-dot { display: inline-block; height: 1.7rem; width: 1.7rem; border-radius: 999px; background: linear-gradient(135deg, var(--accent-blue), #a9c0ff); }
+  .footer-label { color: var(--ink); font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .skip-link { position: fixed; left: 1rem; top: -4rem; z-index: 100; background: var(--deep-navy); color: white; padding: .75rem 1rem; }
+  .skip-link:focus { top: 1rem; }
+}
+
+@media (min-width: 640px) { .site-container { width: min(100% - 4rem, 80rem); } .section-space { padding-block: 7rem; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
