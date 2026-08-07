@@ -27,6 +27,8 @@ here. Open questions and gates remain in `DEPLOYMENT_CONTEXT.md` and
 | Public site is B2B-only and consultation-led | Matches product purpose and avoids transactional scope | Confirmed |
 | Primary named service is Dokumentenmanagementsysteme (DMS) | “Dashboards” was considered unclear as a primary service label | Confirmed; data analysis/automation capabilities may remain accurately described |
 | Use pre-launch, individual-operator claims only | Avoids implying GmbH/UG, team, agency, certification, references, or established customer base | Confirmed policy; legal wording still requires review |
+| Publish the approved operator identity, pre-launch status, and service address in the legal/operator surface | Pouya Hedayati explicitly approved the wording and publication of the home address for this phase | Confirmed for Phase 2; not public-deployment authorization |
+| Keep the initial browser runtime same-origin and storage-free | Phase 3 browser evidence found no external hostnames or persistent browser storage; local fonts and media satisfy the current target posture | Confirmed for current app; provider-side processing and future form flows remain gated |
 | Support German and English at launch | Explicit operator scope decision, superseding the current German-only document assumption | Confirmed; architecture/content work required |
 
 ## Decisions deliberately not made
