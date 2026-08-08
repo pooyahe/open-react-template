@@ -1,0 +1,19 @@
+[build]
+  command = "corepack pnpm@10.15.1 build"
+  publish = ".next"
+
+[build.environment]
+  DEPLOYMENT_ENV = "preview"
+  SEO_INDEXING_ENABLED = "false"
+
+[context.deploy-preview.environment]
+  DEPLOYMENT_ENV = "preview"
+  SEO_INDEXING_ENABLED = "false"
+
+[context.branch-deploy.environment]
+  DEPLOYMENT_ENV = "preview"
+  SEO_INDEXING_ENABLED = "false"
+
+[context."chore/deployment-readiness".environment]
+  DEPLOYMENT_ENV = "preview"
+  SEO_INDEXING_ENABLED = "false"

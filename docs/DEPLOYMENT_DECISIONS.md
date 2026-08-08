@@ -8,7 +8,9 @@ here. Open questions and gates remain in `DEPLOYMENT_CONTEXT.md` and
 |---|---|---|
 | Use Netlify Free for the private preview and initial public landing page | Low expected traffic, deploy previews, rollback, Next.js support, and no initial paid commitment | Confirmed; deployment not yet authorized |
 | Keep GitHub as source repository and `main` as production branch | Existing workflow and clear production boundary | Confirmed |
+| Use `https://github.com/pooyahe/open-react-template.git` and `chore/deployment-readiness` for the Phase 8 preview | Explicit repository and branch confirmation | Confirmed; external deployment still requires approval |
 | Use Netlify deploy previews for branches/PRs | Enables review before production | Confirmed; previews must be noindex |
+| Prefer Netlify team-login/private visibility for the preview when available on Free | Keeps preview access restricted without an automatic plan upgrade | Confirmed preference; Free-plan seat/access limits require verification in the Netlify UI |
 | Use IONOS for the domain, DNS, and mailbox | Existing ownership and mailbox at `info@aktenkompass.de` | Confirmed |
 | Use `aktenkompass.de` as the canonical no-www hostname | Explicit operator choice | Confirmed; DNS connection requires approval |
 | Use Brevo Transactional Email API only for server-side form notifications | Keeps visitor address in Reply-To, avoids spoofing, and separates mailbox from transactional delivery | Confirmed conditionally; requires sender/domain verification and security review |

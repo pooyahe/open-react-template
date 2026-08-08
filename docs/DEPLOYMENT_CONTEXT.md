@@ -31,6 +31,8 @@ public contact details are operational context, not credentials.
 | Message handling | Pouya Hedayati only; business-day review, normally response within two business days | Context interview | CONFIRMED | Personal data | Restrict mailbox access and document incident/data-subject handling |
 | Hosting | Netlify Free for private preview and initial public landing page | Context interview | CONFIRMED | Operational | No paid auto-recharge/add-ons; monitor usage; document Netlify DPA and actual data flows |
 | Source repository | GitHub | Context interview | CONFIRMED | Operational | Protect repository and deployment integration; main is production branch |
+| GitHub repository | https://github.com/pooyahe/open-react-template.git | Repository inspection; context interview | CONFIRMED | Operational | Connect this repository only after explicit preview-deployment authorization |
+| Preview branch | chore/deployment-readiness | Context interview 2026-08-08 | CONFIRMED | Operational | Use for the Phase 8 preview; main remains the production branch |
 | Branching | main is production; feature branches/PRs use Netlify deploy previews | Context interview | CONFIRMED | Operational | Preview deployments must be noindex |
 | Domain | aktenkompass.de; IONOS registrar and DNS provider | Context interview | CONFIRMED | Operational | Do not connect public DNS without explicit approval |
 | Canonical hostname | https://aktenkompass.de; no-www canonical | Context interview | CONFIRMED | Public | Redirect or otherwise normalize www if enabled; configure canonical, sitemap, robots |
@@ -49,6 +51,7 @@ public contact details are operational context, not credentials.
 | Legal review | Pouya Hedayati will review/approve wording and provider data flows | Context interview | LEGAL_REVIEW_REQUIRED | Legal | Self-review is recorded; professional legal review may still be prudent before public launch |
 | Deployment authorization | Pouya Hedayati | Context interview | CONFIRMED | Operational | Required approval before production DNS/deploy |
 | Account ownership | Pouya Hedayati controls GitHub, Netlify, IONOS, and Brevo | Context interview | CONFIRMED | Security | Enable MFA and maintain recovery access |
+| Preview access preference | Prefer Netlify team-login/private visibility when available on Free; otherwise an unindexed URL-accessible preview is acceptable; do not upgrade solely for password protection | Context interview 2026-08-08 | CONFIRMED | Operational/security | Classify the fallback as `UNINDEXED PREVIEW — URL ACCESSIBLE`; never expose secrets or sensitive data |
 | Email authentication | SPF, DKIM, and DMARC required before public launch | Context interview | SECURITY_REVIEW_REQUIRED | Security | Brevo delivery and domain configuration are launch blockers |
 
 ## Explicitly unresolved or gated items
