@@ -27,7 +27,7 @@
 
 @layer base {
   * { border-color: var(--border); }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
   body { background: var(--page-bg); }
   :focus-visible { outline: 3px solid var(--accent-blue); outline-offset: 3px; }
   ::selection { background: var(--soft-blue); color: var(--deep-navy); }

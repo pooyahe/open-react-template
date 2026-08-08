@@ -83,3 +83,31 @@ For each completed phase, the summary must state:
 - Remaining manual checks or placeholders
 
 “Looks good” is not sufficient evidence.
+
+## Phase 1B automated baseline
+
+The repository now uses Vitest with React Testing Library and `jest-dom` for
+stable component behavior, and Playwright for browser behavior that depends on
+routing, responsive layout, keyboard input, and real focus handling. Chromium
+is the initial automated browser target; Firefox and WebKit/Safari remain later
+release-gate coverage.
+
+The component baseline covers the homepage H1, primary CTA, required homepage
+content, the header navigation landmark, and meaningful navigation link names.
+The Playwright baseline covers homepage availability, both legal-route smoke
+flows, footer navigation, desktop and mobile navigation, keyboard focus and
+activation, and horizontal overflow at 1440, 1024, 768, 390, and 320 pixels.
+
+Tests intentionally do not validate unresolved legal wording, contact-form or
+Brevo behavior, bilingual routing, analytics, privacy retention, final media,
+or a complete WCAG audit. Those require their own implementation and review
+gates.
+
+## Phase 6 accessibility baseline
+
+The Playwright baseline now includes skip-link activation, visible focus
+inspection, Escape-close and focus restoration for mobile navigation,
+reduced-motion behavior, and a 200% text-scale proxy at a narrow desktop width.
+The responsive overflow test continues to cover 1440, 1024, 768, 390, and 320
+pixels. Native browser zoom, Firefox/WebKit, screen readers, and a complete
+WCAG audit remain manual or later release-gate work.

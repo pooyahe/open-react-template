@@ -22,11 +22,11 @@ export default function Home() {
             <Image src="/media/hero/hero-poster.webp" alt="Arbeitsplatz mit Laptop und digitalen Unterlagen" fill priority sizes="(max-width: 640px) calc(100vw - 2.5rem), 1200px" className="object-cover object-center" />
             <div className="absolute inset-0 bg-gradient-to-r from-[rgba(11,31,51,0.94)] via-[rgba(11,31,51,0.78)] to-[rgba(11,31,51,0.12)]" aria-hidden="true" />
             <div className="relative flex min-h-[620px] items-center px-6 py-16 sm:min-h-[640px] sm:px-12 lg:min-h-[680px] lg:px-20">
-              <div className="max-w-2xl text-white">
+              <div className="min-w-0 w-full max-w-full text-white lg:max-w-2xl">
                 <p className="mb-5 text-sm font-semibold uppercase tracking-[0.16em] text-blue-200">{homepageContent.hero.eyebrow}</p>
-                <h1 className="max-w-xl text-4xl font-bold leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-7xl">{homepageContent.hero.title}</h1>
-                <p className="mt-7 max-w-xl text-lg leading-8 text-slate-100 sm:text-xl">{homepageContent.hero.text}</p>
-                <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <h1 className="min-w-0 max-w-full text-4xl font-bold leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:max-w-xl lg:text-7xl">{homepageContent.hero.title}</h1>
+                <p className="mt-7 min-w-0 max-w-full text-lg leading-8 text-slate-100 sm:text-xl lg:max-w-xl">{homepageContent.hero.text}</p>
+                <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <a className="button-primary" href="#kontakt">{homepageContent.hero.primaryCta}</a>
                   <a className="button-secondary button-secondary-dark" href="#probleme">{homepageContent.hero.secondaryCta}</a>
                 </div>
