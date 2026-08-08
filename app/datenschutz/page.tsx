@@ -1,3 +1,12 @@
+import type { Metadata } from "next";
+import { routeMetadata } from "@/config/seo";
+
+export const metadata: Metadata = routeMetadata(
+  "Datenschutz",
+  "Vorläufige Datenschutzhinweise für die aktuelle statische Website von AktenKompass.",
+  "/datenschutz",
+);
+
 export default function DatenschutzPage() {
   return (
     <main id="main-content" tabIndex={-1} className="site-container section-space">

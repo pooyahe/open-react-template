@@ -1,3 +1,12 @@
+import type { Metadata } from "next";
+import { routeMetadata } from "@/config/seo";
+
+export const metadata: Metadata = routeMetadata(
+  "Impressum",
+  "Impressum und Angaben zum Betreiber von AktenKompass.",
+  "/impressum",
+);
+
 export default function ImpressumPage() {
   return (
     <main id="main-content" tabIndex={-1} className="site-container section-space">

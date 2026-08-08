@@ -1,7 +1,9 @@
 import "./css/style.css";
 
 import localFont from "next/font/local";
+import type { Metadata } from "next";
 import Header from "@/components/ui/header";
+import { isIndexableDeployment } from "@/config/seo";
 
 const siteFont = localFont({
   src: [
@@ -12,9 +14,17 @@ const siteFont = localFont({
   display: "swap",
 });
 
-export const metadata = {
-  title: "[COMPANY_NAME] – Digitalisierung für kleine Unternehmen",
-  description: "Dokumente digitalisieren, Abläufe automatisieren und Daten verständlich nutzen.",
+export const metadata: Metadata = {
+  metadataBase: isIndexableDeployment ? new URL("https://aktenkompass.de") : undefined,
+  title: {
+    default: "AktenKompass | Dokumentenmanagement für kleine Unternehmen",
+    template: "%s | AktenKompass",
+  },
+  description: "AktenKompass unterstützt kleine Unternehmen bei strukturierter digitaler Dokumentenverwaltung, pragmatischer Automatisierung und verständlicher Datennutzung.",
+  robots: {
+    index: isIndexableDeployment,
+    follow: isIndexableDeployment,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

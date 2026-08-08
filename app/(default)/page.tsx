@@ -7,11 +7,13 @@ import Process from "@/components/sections/process";
 import UseCases from "@/components/sections/use-cases";
 import Contact from "@/components/sections/contact";
 import { homepageContent } from "@/content/homepage";
+import { routeMetadata } from "@/config/seo";
 
-export const metadata = {
-  title: "Digitalisierung für kleine Unternehmen",
-  description: "Weniger Papier, klarere Abläufe und verständliche Geschäftsdaten.",
-};
+export const metadata = routeMetadata(
+  "Dokumentenmanagement für kleine Unternehmen",
+  "Strukturierte digitale Dokumentenverwaltung, pragmatische Automatisierung und verständliche Datennutzung für kleine Unternehmen.",
+  "/",
+);
 
 export default function Home() {
   return (

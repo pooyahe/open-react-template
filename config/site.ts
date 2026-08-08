@@ -1,10 +1,17 @@
 export const siteConfig = {
-  name: "[COMPANY_NAME]",
+  name: "AktenKompass",
+  url: "https://aktenkompass.de",
+  operatorName: "Pouya Hedayati",
+  address: {
+    street: "Gärtnerstr. 29",
+    postalCode: "80992",
+    city: "München",
+    country: "Deutschland",
+  },
   description:
     "Digitalisierung für kleine Unternehmen: Dokumente, Abläufe und Daten klarer organisieren.",
   locale: "de-DE",
-  email: "[EMAIL]",
-  phone: "[PHONE]",
-  city: "[CITY]",
-  bookingUrl: "[BOOKING_URL]",
+  email: "info@aktenkompass.de",
+  phone: "+49 176 57739809",
+  city: "München, Bayern",
 } as const;
