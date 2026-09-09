@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Bitte prüfen Sie die Pflichtfelder und Ihre Angaben." }, { status: 400 });
   }
 
-  const apiKey = process.env.BREVO_API_KEY;
+  const apiKey = process.env.BREVO_API_KEY?.trim();
   const recipient = process.env.CONTACT_RECIPIENT_EMAIL || siteConfig.email;
   if (!apiKey) {
     console.error("Contact delivery is not configured: BREVO_API_KEY is missing.");
@@ -119,7 +119,27 @@ export async function POST(request: NextRequest) {
     if (response.ok) {
       return NextResponse.json({ message: "Vielen Dank. Ihre Nachricht wurde erfolgreich gesendet." });
     }
-    console.error("Brevo contact delivery failed with status", response.status);
+    const providerError = (await response.text()).slice(0, 500);
+    console.error("Brevo contact delivery failed", { status: response.status, providerError });
+
+    if (response.status === 400) {
+      return NextResponse.json(
+        { message: `Brevo hat den Absender ${siteConfig.email} abgelehnt. Bitte richten Sie diese Adresse in Brevo als Absender ein.` },
+        { status: 502 },
+      );
+    }
+    if (response.status === 401 || response.status === 403) {
+      return NextResponse.json(
+        { message: "Brevo hat den API-Zugang abgelehnt. Bitte prüfen Sie den API-Schlüssel und den aktivierten Transaktionsversand." },
+        { status: 502 },
+      );
+    }
+    if (response.status === 429) {
+      return NextResponse.json(
+        { message: "Das Brevo-Versandlimit ist vorübergehend erreicht. Bitte versuchen Sie es später erneut." },
+        { status: 503 },
+      );
+    }
   } catch {
     console.error("Brevo contact delivery failed before a response was received.");
   }

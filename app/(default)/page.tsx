@@ -21,7 +21,7 @@ export default function Home() {
       <section className="relative isolate overflow-hidden bg-[var(--deep-navy)] py-6 sm:py-10 lg:py-14">
         <div className="site-container">
           <div className="relative min-h-[620px] overflow-hidden rounded-[1.75rem] bg-slate-900 sm:min-h-[640px] lg:min-h-[680px]">
-            <Image src="/media/hero/hero-poster.webp" alt="Arbeitsplatz mit Laptop und digitalen Unterlagen" fill priority sizes="(max-width: 640px) calc(100vw - 2.5rem), 1200px" className="object-cover object-center" />
+            <Image src="/images/heroimage.png" alt="Digitale Dokumentenverwaltung am Arbeitsplatz" fill priority sizes="(max-width: 640px) calc(100vw - 2.5rem), 1200px" className="object-cover object-center" />
             <div className="absolute inset-0 bg-gradient-to-r from-[rgba(11,31,51,0.94)] via-[rgba(11,31,51,0.78)] to-[rgba(11,31,51,0.12)]" aria-hidden="true" />
             <div className="relative flex min-h-[620px] items-center px-6 py-16 sm:min-h-[640px] sm:px-12 lg:min-h-[680px] lg:px-20">
               <div className="min-w-0 w-full max-w-full text-white lg:max-w-2xl">
