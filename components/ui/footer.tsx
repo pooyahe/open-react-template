@@ -10,7 +10,7 @@ export default function Footer() {
         <nav aria-label="Footer-Navigation"><p className="footer-label">Auf dieser Seite</p><ul className="mt-4 space-y-3">{navigation.map((item) => <li key={item.href}><Link className="footer-link" href={item.href}>{item.label}</Link></li>)}</ul></nav>
         <nav aria-label="Rechtliche Hinweise"><p className="footer-label">Rechtliches</p><ul className="mt-4 space-y-3"><li><Link className="footer-link" href="/impressum">Impressum</Link></li><li><Link className="footer-link" href="/datenschutz">Datenschutz</Link></li></ul></nav>
       </div>
-      <div className="site-container border-t border-[var(--border)] py-5 text-xs text-[var(--muted)]">© AktenKompass · Betreiber: Pouya Hedayati</div>
+      <div className="site-container border-t border-[var(--border)] py-5 text-xs text-[var(--muted)]">© AktenKompass · Betreiber: Dr. Pouya Hedayati</div>
     </footer>
   );
 }

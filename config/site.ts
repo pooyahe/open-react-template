@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "AktenKompass",
   url: "https://aktenkompass.de",
-  operatorName: "Pouya Hedayati",
+  operatorName: "Dr. Pouya Hedayati",
   address: {
     street: "Gärtnerstr. 29",
     postalCode: "80992",
