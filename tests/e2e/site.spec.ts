@@ -105,6 +105,20 @@ test("footer legal links resolve without a 404", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Datenschutz" })).toBeVisible();
 });
 
+test("section navigation returns from legal pages to the homepage", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+
+  for (const path of ["/impressum", "/datenschutz"]) {
+    await page.goto(path);
+    await page
+      .getByRole("navigation", { name: "Hauptnavigation" })
+      .getByRole("link", { name: "Leistungen" })
+      .click();
+    await expect(page).toHaveURL(/\/#leistungen$/);
+    await expect(page.locator("#leistungen")).toBeVisible();
+  }
+});
+
 test("desktop navigation is keyboard reachable and actionable", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
