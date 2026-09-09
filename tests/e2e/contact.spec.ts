@@ -11,9 +11,11 @@ test("contact form exposes labeled fields and privacy information", async ({ pag
 
 test("contact form reports a successful same-origin submission", async ({ page }) => {
   let submittedBody = "";
+  let submittedUrl = "";
   await page.route("**/*", async (route) => {
     if (route.request().method() === "POST") {
       submittedBody = route.request().postData() || "";
+      submittedUrl = route.request().url();
       await route.fulfill({ status: 200, contentType: "text/html", body: "ok" });
       return;
     }
@@ -29,6 +31,7 @@ test("contact form reports a successful same-origin submission", async ({ page }
 
   await expect(page.getByRole("status")).toContainText("erfolgreich gesendet");
   await expect(page.getByLabel("Name *")).toHaveValue("");
+  expect(submittedUrl).toContain("/__forms.html");
   expect(submittedBody).toContain("form-name=aktenkompass-contact");
 });
 
