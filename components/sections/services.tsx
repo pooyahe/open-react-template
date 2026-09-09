@@ -3,7 +3,7 @@ import { homepageContent } from "@/content/homepage";
 
 export default function Services() {
   return (
-    <section id="leistungen" className="section-space bg-[var(--page-bg)]">
+    <section id="leistungen" className="section-space bg-[var(--blue-mist)]">
       <div className="site-container">
         <SectionHeading
           eyebrow="Leistungen"

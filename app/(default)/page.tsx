@@ -43,7 +43,7 @@ export default function Home() {
       <Transformation />
       <Process />
       <UseCases />
-      <section className="section-space bg-[var(--soft-blue)]">
+      <section className="section-space bg-[var(--blue-wash)]">
         <div className="site-container">
           <SectionHeading eyebrow="Der nächste Schritt" title="Digitalisierung darf verständlich beginnen" text="Sie müssen nicht alles auf einmal verändern. Gemeinsam klären wir, welcher Prozess zuerst betrachtet werden sollte." align="center" />
           <div className="mt-8 text-center"><a className="button-primary" href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(siteConfig.contact.consultationSubject)}`}>Kostenloses Erstgespräch</a></div>

@@ -4,10 +4,10 @@ import { homepageContent } from "@/content/homepage";
 export default function Problems() {
   const { problems } = homepageContent;
   return (
-    <section id="probleme" className="section-space bg-white">
+    <section id="probleme" className="section-space bg-[var(--blue-wash)]">
       <div className="site-container grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <SectionHeading eyebrow={problems.eyebrow} title={problems.title} text={problems.intro} />
-        <div className="rounded-[2rem] border border-[var(--border)] bg-[var(--warm-paper)] p-7 sm:p-10">
+        <div className="rounded-[2rem] border border-blue-200 bg-[var(--blue-cloud)] p-7 sm:p-10 shadow-[0_18px_50px_rgba(53,106,230,0.07)]">
           <ul className="grid gap-5 sm:grid-cols-2">
             {problems.items.map((item) => (
               <li key={item} className="flex gap-3 text-base leading-7 text-[var(--ink)]">

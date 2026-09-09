@@ -3,7 +3,7 @@ import { homepageContent } from "@/content/homepage";
 
 export default function Process() {
   return (
-    <section id="vorgehen" className="section-space bg-[var(--page-bg)]">
+    <section id="vorgehen" className="section-space bg-[var(--blue-wash)]">
       <div className="site-container">
         <SectionHeading eyebrow="Vorgehen" title="Pragmatisch von der Idee zur nutzbaren Lösung" align="center" />
         <div className="mt-14 grid gap-5 lg:grid-cols-3">

@@ -3,7 +3,7 @@ import { homepageContent } from "@/content/homepage";
 
 export default function UseCases() {
   return (
-    <section id="vorteile" className="section-space bg-white">
+    <section id="vorteile" className="section-space bg-[var(--blue-mist)]">
       <div className="site-container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <SectionHeading eyebrow="Praktischer Nutzen" title="Digitalisierung ohne unnötige Komplexität" text="Wir schaffen Klarheit im Arbeitsalltag und entwickeln den nächsten sinnvollen Schritt gemeinsam mit Ihnen." />
         <div className="grid gap-4 sm:grid-cols-3">

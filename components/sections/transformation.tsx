@@ -19,7 +19,7 @@ function Comparison({ title, items, tone }: { title: string; items: readonly str
 
 export default function Transformation() {
   return (
-    <section className="section-space bg-white">
+    <section className="section-space bg-[var(--blue-cloud)]">
       <div className="site-container">
         <SectionHeading eyebrow={homepageContent.transformation.eyebrow} title={homepageContent.transformation.title} align="center" />
         <div className="mt-14 grid gap-4 lg:grid-cols-2">
