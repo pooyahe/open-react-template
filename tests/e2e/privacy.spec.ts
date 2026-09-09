@@ -12,8 +12,12 @@ for (const viewport of [
     await page.goto("/");
     await page.getByRole("link", { name: "Impressum" }).click();
     await expect(page).toHaveURL(/\/impressum$/);
+    await expect(page.getByRole("heading", { name: "Angaben gemäß § 5 DDG" })).toBeVisible();
+    await expect(page.getByText(/ausschließlich an Unternehmer/)).toBeVisible();
     await page.goto("/datenschutz");
     await expect(page.getByRole("heading", { name: "Datenschutz" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "5. Speicherdauer" })).toBeVisible();
+    await expect(page.getByText(/spätestens sechs Monate/)).toBeVisible();
     await page.goto("/");
 
     if (viewport.name === "mobile") {
