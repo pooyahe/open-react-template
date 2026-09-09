@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
   const message = clean(body.message);
   const privacyAccepted = body.privacyAccepted === true;
 
-  if (name.length < 2 || name.length > 100 || !isEmail(email) || email.length > 254 || company.length > 120 || phone.length > 50 || message.length < 20 || message.length > 3000 || !privacyAccepted) {
+  if (name.length < 2 || name.length > 100 || !isEmail(email) || email.length > 254 || company.length > 120 || phone.length > 50 || message.length < 2 || message.length > 3000 || !privacyAccepted) {
     return NextResponse.json({ message: "Bitte prüfen Sie die Pflichtfelder und Ihre Angaben." }, { status: 400 });
   }
 

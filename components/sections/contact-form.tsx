@@ -11,10 +11,18 @@ export default function ContactForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      setStatus("error");
+      setFeedback("Bitte füllen Sie die markierten Pflichtfelder korrekt aus.");
+      return;
+    }
+
     setStatus("sending");
     setFeedback("");
 
-    const form = event.currentTarget;
     const formData = new FormData(form);
     const payload = {
       ...Object.fromEntries(formData.entries()),
@@ -65,7 +73,7 @@ export default function ContactForm() {
 
       <div className="mt-5">
         <label className="field-label" htmlFor="contact-message">Worum geht es? *</label>
-        <textarea className="form-field min-h-36 resize-y" id="contact-message" name="message" minLength={20} maxLength={3000} required placeholder="Beschreiben Sie kurz Ihren aktuellen Prozess oder Ihre Herausforderung." />
+        <textarea className="form-field min-h-36 resize-y" id="contact-message" name="message" minLength={2} maxLength={3000} required placeholder="Beschreiben Sie kurz Ihren aktuellen Prozess oder Ihre Herausforderung." />
       </div>
 
       <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
