@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { homepageContent } from "@/content/homepage";
 import { siteConfig } from "@/config/site";
+import ContactForm from "./contact-form";
 
 export default function Contact() {
   return (
@@ -12,7 +13,7 @@ export default function Contact() {
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">{homepageContent.contact.text}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-          <Link className="button-primary" href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(siteConfig.contact.emailSubject)}`}>Problem beschreiben</Link>
+          <Link className="button-primary" href="#kontakt-formular">Problem beschreiben</Link>
           <Link className="button-secondary button-secondary-dark" href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(siteConfig.contact.consultationSubject)}`}>Erstgespräch vereinbaren</Link>
           <Link className="button-secondary button-secondary-dark" href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}>Direkt anrufen</Link>
         </div>
@@ -22,6 +23,7 @@ export default function Contact() {
         <p><span className="block text-xs uppercase tracking-[0.14em] text-blue-200">Telefon</span><a className="underline underline-offset-4" href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}>{siteConfig.phone}</a></p>
         <p><span className="block text-xs uppercase tracking-[0.14em] text-blue-200">Standort</span>{siteConfig.city}</p>
       </div>
+      <ContactForm />
     </section>
   );
 }

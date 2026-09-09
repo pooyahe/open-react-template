@@ -64,10 +64,7 @@ test("homepage renders an actionable primary CTA", async ({ page }) => {
 test("contact actions provide real email and telephone paths", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("link", { name: "Problem beschreiben" })).toHaveAttribute(
-    "href",
-    /mailto:info@aktenkompass\.de\?subject=/,
-  );
+  await expect(page.getByRole("link", { name: "Problem beschreiben" })).toHaveAttribute("href", "#kontakt-formular");
   await expect(page.getByRole("link", { name: "Erstgespräch vereinbaren" })).toHaveAttribute(
     "href",
     /mailto:info@aktenkompass\.de\?subject=/,
@@ -80,6 +77,8 @@ test("contact actions provide real email and telephone paths", async ({ page }) 
     "href",
     "mailto:info@aktenkompass.de",
   );
+  await expect(page.getByRole("heading", { name: "Wobei dürfen wir Sie unterstützen?" })).toBeVisible();
+  await expect(page.getByRole("textbox", { name: "Ihre Herausforderung *" })).toBeVisible();
 });
 
 test("skip link moves focus to the main content", async ({ page }) => {

@@ -19,3 +19,12 @@ test("security headers are present on the homepage and legal routes", async ({ r
     expect(headers["strict-transport-security"]).toBeUndefined();
   }
 });
+
+test("contact endpoint rejects incomplete submissions", async ({ request }) => {
+  const response = await request.post("/api/contact", {
+    data: { name: "", company: "", email: "not-an-email", message: "" },
+  });
+
+  expect(response.status()).toBe(400);
+  await expect(response.json()).resolves.toMatchObject({ error: expect.any(String) });
+});
