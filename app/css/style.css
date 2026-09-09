@@ -7,9 +7,9 @@
   --color-accent-blue: #356ae6;
   --color-accent-hover: #2855bf;
   --color-soft-blue: #eaf0ff;
-  --color-blue-mist: #f2f6ff;
-  --color-blue-wash: #e8f0ff;
-  --color-blue-cloud: #f7faff;
+  --color-blue-mist: #f3f7fd;
+  --color-blue-haze: #e8f0fb;
+  --color-blue-cloud: #dce8f7;
   --color-warm-paper: #f3eee7;
   --color-page-bg: #f8f9f7;
   --color-muted: #5f6b78;
@@ -22,9 +22,9 @@
   --accent-blue: #356ae6;
   --accent-hover: #2855bf;
   --soft-blue: #eaf0ff;
-  --blue-mist: #f2f6ff;
-  --blue-wash: #e8f0ff;
-  --blue-cloud: #f7faff;
+  --blue-mist: #f3f7fd;
+  --blue-haze: #e8f0fb;
+  --blue-cloud: #dce8f7;
   --warm-paper: #f3eee7;
   --page-bg: #f8f9f7;
   --muted: #5f6b78;
@@ -50,13 +50,10 @@
   .button-secondary-dark { border-color: rgba(255,255,255,.45); background: transparent; color: white; }
   .button-secondary-dark:hover { border-color: white; background: rgba(255,255,255,.12); color: white; }
   .button-small { min-height: 2.65rem; padding-inline: 1rem; font-size: .9rem; }
-  .contact-form-field { width: 100%; min-height: 3rem; border: 2px solid #aebdcd; border-radius: .5rem; background: #fff; color: var(--ink); padding: .75rem 1rem; box-shadow: inset 0 1px 2px rgba(19,34,53,.06); transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease; }
-  .contact-form-field:hover { border-color: #71869d; }
-  .contact-form-field:focus { border-color: var(--accent-blue); outline: none; background: #fff; box-shadow: 0 0 0 4px rgba(53,106,230,.18); }
-  .contact-form-field::placeholder { color: #6b7b8c; }
-  textarea.contact-form-field { min-height: 8.5rem; resize: vertical; }
-  .contact-form-label:focus-within { color: var(--accent-hover); }
-  .contact-form-submit:disabled { cursor: wait; opacity: .65; }
+  .field-label { display: block; margin-bottom: .5rem; color: var(--deep-navy); font-size: .875rem; font-weight: 700; }
+  .form-field { width: 100%; border: 1px solid #b9c9dc; border-radius: .5rem; background: white; padding: .8rem .9rem; color: var(--ink); transition: border-color 180ms ease, box-shadow 180ms ease; }
+  .form-field::placeholder { color: #748397; }
+  .form-field:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(53,106,230,.16); outline: none; }
   .nav-link, .footer-link { color: var(--muted); transition: color 180ms ease; }
   .nav-link:hover, .footer-link:hover { color: var(--accent-hover); }
   .mobile-nav-link { border-bottom: 1px solid var(--border); padding-block: .85rem; color: var(--ink); font-weight: 600; }

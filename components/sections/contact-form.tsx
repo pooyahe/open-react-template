@@ -1,68 +1,91 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { siteConfig } from "@/config/site";
 
-type FormState = "idle" | "sending" | "success" | "error";
+type FormStatus = "idle" | "sending" | "success" | "error";
 
 export default function ContactForm() {
-  const [state, setState] = useState<FormState>("idle");
-  const [error, setError] = useState("");
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [feedback, setFeedback] = useState("");
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setState("sending");
-    setError("");
+    setStatus("sending");
+    setFeedback("");
 
     const form = event.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
+    const formData = new FormData(form);
+    const payload = {
+      ...Object.fromEntries(formData.entries()),
+      privacyAccepted: formData.get("privacyAccepted") === "on",
+    };
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
-      const result = (await response.json()) as { error?: string };
-      if (!response.ok) throw new Error(result.error || "Die Anfrage konnte nicht versendet werden.");
+      const result = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(result.message || "Die Nachricht konnte nicht gesendet werden.");
+      }
+
       form.reset();
-      setState("success");
-    } catch (submissionError) {
-      setError(submissionError instanceof Error ? submissionError.message : "Die Anfrage konnte nicht versendet werden.");
-      setState("error");
+      setStatus("success");
+      setFeedback("Vielen Dank. Ihre Nachricht wurde erfolgreich gesendet.");
+    } catch (error) {
+      setStatus("error");
+      setFeedback(error instanceof Error ? error.message : "Die Nachricht konnte nicht gesendet werden.");
     }
   }
 
   return (
-    <div id="kontakt-formular" className="site-container mt-12 rounded-[1.25rem] bg-white p-6 text-[var(--ink)] shadow-sm sm:p-8">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start">
+    <form onSubmit={handleSubmit} className="rounded-[1.25rem] bg-white p-6 text-[var(--ink)] shadow-[0_24px_70px_rgba(0,0,0,0.2)] sm:p-8" noValidate>
+      <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Problem beschreiben</p>
-          <h3 className="mt-3 text-2xl font-bold tracking-[-0.03em] sm:text-3xl">Wobei dürfen wir Sie unterstützen?</h3>
-          <p className="mt-4 leading-7 text-[var(--muted)]">Beschreiben Sie kurz Ihre aktuelle Herausforderung. Wir melden uns für ein unverbindliches Erstgespräch.</p>
-          <p className="mt-5 text-sm leading-6 text-[var(--muted)]">Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet. Pflichtfelder sind mit * gekennzeichnet.</p>
+          <label className="field-label" htmlFor="contact-name">Name *</label>
+          <input className="form-field" id="contact-name" name="name" type="text" autoComplete="name" minLength={2} maxLength={100} required />
         </div>
-        <form className="grid gap-4 rounded-xl border-2 border-blue-100 bg-[var(--page-bg)] p-4 sm:p-5" onSubmit={submit} noValidate>
-          <p className="-mb-1 text-sm font-semibold text-[var(--ink)]">Beginnen Sie hier – wir melden uns innerhalb von zwei Werktagen.</p>
-          <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
-            <label htmlFor="website">Website</label>
-            <input id="website" name="website" tabIndex={-1} autoComplete="off" />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label className="contact-form-label grid gap-2 text-sm font-semibold" htmlFor="contact-name">Name *<input id="contact-name" name="name" required maxLength={100} autoComplete="name" className="contact-form-field" /></label>
-            <label className="contact-form-label grid gap-2 text-sm font-semibold" htmlFor="contact-company">Unternehmen *<input id="contact-company" name="company" required maxLength={120} autoComplete="organization" className="contact-form-field" /></label>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label className="contact-form-label grid gap-2 text-sm font-semibold" htmlFor="contact-email">E-Mail *<input id="contact-email" name="email" required type="email" maxLength={254} autoComplete="email" className="contact-form-field" /></label>
-            <label className="contact-form-label grid gap-2 text-sm font-semibold" htmlFor="contact-phone">Telefon <input id="contact-phone" name="phone" type="tel" maxLength={40} autoComplete="tel" className="contact-form-field" /></label>
-          </div>
-          <label className="contact-form-label grid gap-2 text-sm font-semibold" htmlFor="contact-message">Ihre Herausforderung *<textarea id="contact-message" name="message" required maxLength={4000} rows={5} className="contact-form-field" /></label>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <button className="button-primary contact-form-submit" type="submit" disabled={state === "sending"}>{state === "sending" ? "Wird gesendet …" : "Anfrage senden"}</button>
-            <a className="text-sm font-semibold text-blue-700 underline underline-offset-4" href={`mailto:${siteConfig.email}`}>Alternativ per E-Mail</a>
-          </div>
-          <p aria-live="polite" className={state === "success" ? "text-sm font-semibold text-green-700" : "text-sm text-red-700"}>{state === "success" ? "Vielen Dank. Ihre Anfrage wurde übermittelt." : state === "error" ? error : ""}</p>
-        </form>
+        <div>
+          <label className="field-label" htmlFor="contact-email">E-Mail *</label>
+          <input className="form-field" id="contact-email" name="email" type="email" autoComplete="email" maxLength={254} required />
+        </div>
+        <div>
+          <label className="field-label" htmlFor="contact-company">Unternehmen</label>
+          <input className="form-field" id="contact-company" name="company" type="text" autoComplete="organization" maxLength={120} />
+        </div>
+        <div>
+          <label className="field-label" htmlFor="contact-phone">Telefon</label>
+          <input className="form-field" id="contact-phone" name="phone" type="tel" autoComplete="tel" maxLength={50} />
+        </div>
       </div>
-    </div>
+
+      <div className="mt-5">
+        <label className="field-label" htmlFor="contact-message">Worum geht es? *</label>
+        <textarea className="form-field min-h-36 resize-y" id="contact-message" name="message" minLength={20} maxLength={3000} required placeholder="Beschreiben Sie kurz Ihren aktuellen Prozess oder Ihre Herausforderung." />
+      </div>
+
+      <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="contact-website">Website</label>
+        <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
+      <label className="mt-5 flex items-start gap-3 text-sm leading-6 text-[var(--muted)]" htmlFor="contact-privacy">
+        <input id="contact-privacy" name="privacyAccepted" type="checkbox" required className="mt-1 h-4 w-4 shrink-0 accent-blue-600" />
+        <span>Ich habe die <Link href="/datenschutz" className="font-semibold text-blue-700 underline decoration-blue-300 underline-offset-2">Datenschutzhinweise</Link> zur Verarbeitung meiner Anfrage gelesen. *</span>
+      </label>
+
+      <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <button className="button-primary disabled:cursor-not-allowed disabled:opacity-60" type="submit" disabled={status === "sending"}>
+          {status === "sending" ? "Wird gesendet …" : "Nachricht senden"}
+        </button>
+        <p className={`text-sm leading-6 ${status === "error" ? "text-red-700" : status === "success" ? "text-green-700" : "text-[var(--muted)]"}`} role="status" aria-live="polite">
+          {feedback || "Pflichtfelder sind mit * gekennzeichnet."}
+        </p>
+      </div>
+    </form>
   );
 }

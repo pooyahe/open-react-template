@@ -1,6 +1,6 @@
 # Data-Flow Inventory
 
-Evidence date: 2026-08-07. The browser inventory was run against the
+Evidence date: 2026-09-09. The browser inventory was run against the
 production-like Next.js start server at 1440×900 and 390×844. The observed
 browser origin was 127.0.0.1:3100; a future Netlify deployment will replace
 that origin without changing the same-origin resource model.
@@ -15,6 +15,7 @@ that origin without changing the same-origin resource model.
 | Visitor browser | Same-origin compiled Nacelle font assets | Initial page load | HTTP request metadata; font resource request | Render the approved local typography | No browser storage observed | Not applicable in app | Next.js local font handling | CURRENT |
 | Visitor browser | Same-origin /impressum and /datenschutz | Footer/legal navigation | HTTP request metadata; route/resource URLs | Display legal information | No application storage observed | Not applicable in app | Next.js app | CURRENT |
 | Visitor browser | Same-origin anchor targets | Header/navigation or CTA interaction | No new external data; URL fragment | Move within the page | No application storage observed | Not applicable | Browser navigation | CURRENT |
+| Visitor browser | Same-origin /api/contact | Contact-form submission | Name, email, message, optional company and telephone | Deliver a non-binding inquiry | No application database | Provider-side logs and mailbox retention require final review | Next.js route; Brevo and IONOS downstream | IMPLEMENTED |
 
 The browser test observed no request to an external hostname at either tested
 viewport. All observed requests were same-origin resources, including the
@@ -25,12 +26,12 @@ unreferenced public/videos/video.mp4.
 
 | Source | Destination | Trigger | Data categories | Purpose | Storage | Retention | Provider | Status |
 |---|---|---|---|---|---|---|---|---|
-| Visitor's mail client | info@aktenkompass.de | Visitor chooses a confirmed email contact path | Email address, headers, and message content supplied by visitor | Non-binding introductory conversation | IONOS mailbox; no application database | Policy recorded in deployment context; legal review remains required | IONOS | AVAILABLE MAILBOX / FORM NOT IMPLEMENTED |
-| Future server-side contact route | Brevo API, then info@aktenkompass.de | Future contact-form submission | Validated name, company, email, optional telephone, message | Notification to the operator | No application database planned; full message content must not be logged | Six-month policy and deletion rules recorded in deployment context | Brevo and IONOS | PLANNED / NOT ACTIVE |
+| Visitor's mail client | info@aktenkompass.de | Visitor chooses the direct-email fallback | Email address, headers, and message content supplied by visitor | Non-binding introductory conversation | IONOS mailbox; no application database | Policy recorded in deployment context; legal review remains required | IONOS | AVAILABLE |
+| Server-side contact route | Brevo API, then info@aktenkompass.de | Validated contact-form submission | Name, company, email, optional telephone, message | Notification to the operator | No application database; full message content is not logged | Six-month policy and deletion rules recorded in deployment context | Brevo and IONOS | IMPLEMENTED; PRODUCTION SECRET REQUIRED |
 | Git repository and deployment pipeline | Netlify | Future preview or production deployment | Source code, build metadata, deployment logs | Host and deploy the application | Provider-controlled build/deploy records | Provider policy not yet documented here | Netlify | PLANNED / DOMAIN NOT CONNECTED |
 
-No contact-form, Brevo, database, upload, analytics, or marketing data flow is
-implemented in the current application.
+The contact-form and server-side Brevo flow are implemented. No database,
+upload, analytics, marketing, or nonessential browser-storage flow is present.
 
 ## Evidence limitations
 

@@ -3,7 +3,7 @@ import { homepageContent } from "@/content/homepage";
 
 function Comparison({ title, items, tone }: { title: string; items: readonly string[]; tone: "paper" | "blue" }) {
   return (
-    <div className={`p-7 sm:p-9 ${tone === "paper" ? "bg-[var(--warm-paper)]" : "bg-[var(--soft-blue)]"}`}>
+    <div className={`border border-blue-200/70 p-7 sm:p-9 ${tone === "paper" ? "bg-white/90" : "bg-[var(--blue-cloud)]"}`}>
       <h3 className="text-2xl font-bold text-[var(--ink)]">{title}</h3>
       <ul className="mt-7 space-y-4">
         {items.map((item) => (
@@ -19,7 +19,7 @@ function Comparison({ title, items, tone }: { title: string; items: readonly str
 
 export default function Transformation() {
   return (
-    <section className="section-space bg-[var(--blue-cloud)]">
+    <section className="section-space bg-[#f8fbff]">
       <div className="site-container">
         <SectionHeading eyebrow={homepageContent.transformation.eyebrow} title={homepageContent.transformation.title} align="center" />
         <div className="mt-14 grid gap-4 lg:grid-cols-2">

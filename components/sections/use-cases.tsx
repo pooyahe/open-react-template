@@ -8,7 +8,7 @@ export default function UseCases() {
         <SectionHeading eyebrow="Praktischer Nutzen" title="Digitalisierung ohne unnötige Komplexität" text="Wir schaffen Klarheit im Arbeitsalltag und entwickeln den nächsten sinnvollen Schritt gemeinsam mit Ihnen." />
         <div className="grid gap-4 sm:grid-cols-3">
           {homepageContent.useCases.map((useCase, index) => (
-            <article key={useCase.title} className="border border-[var(--border)] bg-[var(--page-bg)] p-6">
+            <article key={useCase.title} className="border border-blue-200/80 bg-white p-6 shadow-[0_14px_38px_rgba(24,66,112,0.06)]">
               <span className="text-sm font-bold text-blue-700">0{index + 1}</span>
               <h3 className="mt-8 text-xl font-bold leading-7 text-[var(--ink)]">{useCase.title}</h3>
               <p className="mt-4 text-sm leading-6 text-[var(--muted)]">{useCase.text}</p>

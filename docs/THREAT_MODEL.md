@@ -1,6 +1,6 @@
 # Security Threat Model
 
-Evidence date: 2026-08-07. This is a provider-independent model for the
+Evidence date: 2026-09-09. This is a provider-independent model for the
 current static application and the explicitly planned contact endpoint. It is
 not a penetration test or legal advice.
 
@@ -61,7 +61,10 @@ present in the current source.
 
 ## 6. Existing mitigations
 
-- No contact endpoint or database exists
+- The contact endpoint uses field and body-size limits, a honeypot, bounded
+  per-instance rate limiting, an operator-controlled sender, and a validated
+  Reply-To address
+- No contact-submission database exists
 - No uploads are accepted
 - No browser storage, analytics, or third-party runtime scripts exist
 - Local fonts and media avoid external runtime dependencies

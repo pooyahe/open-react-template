@@ -1,6 +1,6 @@
 # Third-Party Register
 
-Evidence date: 2026-08-07. “Loaded by browser” refers to the current
+Evidence date: 2026-09-09. “Loaded by browser” refers to the current
 production-like application behavior, not provider-side processing that may
 occur after deployment.
 
@@ -8,7 +8,7 @@ occur after deployment.
 |---|---|---|---|---|---|---|---|---|---|
 | Netlify | Hosting, deploy previews, production hosting | Planned application delivery and builds | PLANNED; not deployed or DNS-connected | No current local browser load; future origin only | Hosting/build processing | Not confirmed | Netlify DPA review pending | REQUIRED before deployment | Use selected Netlify path; document actual data flows before preview/public launch |
 | IONOS | Mailbox for info@aktenkompass.de | Receive direct inquiries and future form notifications | CURRENT mailbox provider; no browser script | No | Yes, mailbox-side | Not confirmed | Provider/DPA review pending | REQUIRED before contact workflow launch | Retain as receiving mailbox |
-| Brevo | Transactional Email API | Future server-side contact-form notifications | PLANNED; not integrated | No | Yes | Not confirmed | Provider/DPA and domain-verification review pending | REQUIRED before integration | Do not integrate in Phase 3; keep mailto fallback |
+| Brevo | Transactional Email API | Server-side contact-form notifications | INTEGRATED; authenticated domain confirmed; production credential required in Netlify | No | Yes | Not confirmed | Provider/DPA review pending | REQUIRED before public launch | Retain with mailto fallback and server-only credential |
 | GitHub | Source repository | Source control and review | CURRENT repository provider | No runtime browser load | Repository/service-side | Not confirmed | Not applicable to visitor runtime; account review pending | Operational review | Retain as source repository |
 
 ## Current runtime dependencies that are not third parties
