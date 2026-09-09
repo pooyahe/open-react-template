@@ -501,3 +501,69 @@ exact command output. Do not claim Phase 2 completion unless every visible
 placeholder removed in scope is backed by an explicitly confirmed fact and the
 operator has reviewed the resulting wording.
 ```
+
+## Phase 1A remediation addendum — 2026-08-07
+
+### Dependency versions before and after
+
+| Package | Before | After |
+|---|---:|---:|
+| `next` | 15.1.11 | 15.5.21 |
+| `react` | 19.2.3 | 19.2.8 |
+| `react-dom` | 19.2.3 | 19.2.8 |
+| `postcss` | 8.5.1 direct; 8.4.31 via Next | 8.5.26 direct and overridden |
+| `sharp` | 0.34.5 via Next | 0.35.0 via documented override |
+| `eslint` | absent | 9.39.5 |
+| `eslint-config-next` | absent | 15.5.21 |
+| `@eslint/eslintrc` | absent | 3.3.1 |
+
+### Vulnerabilities before and after
+
+Initial audit: 36 total — 1 critical, 14 high, 18 moderate, 3 low.
+
+Final audit: 0 total — 0 critical, 0 high, 0 moderate, 0 low.
+
+Resolved paths included `.` → `next`, `.` → `next` → `sharp`, and both direct
+and transitive PostCSS paths. No production or development findings remain.
+
+### Quality configuration
+
+- `eslint.config.mjs` uses `FlatCompat` with the official Next.js
+  `next/core-web-vitals` and `next/typescript` rules.
+- `lint` is now the noninteractive `eslint .` CLI.
+- `lint:fix` is available as an explicit opt-in command.
+- `typecheck` is now `tsc --noEmit` and runs independently of the build.
+- No `ignoreBuildErrors` setting exists.
+- `test` and `test:e2e` remain documented gaps; no fake scripts or test stack
+  were added.
+
+### Final command results
+
+- `corepack pnpm@10.15.1 install --frozen-lockfile`: exit 0.
+- `corepack pnpm@10.15.1 lint`: exit 0.
+- `corepack pnpm@10.15.1 typecheck`: exit 0.
+- `corepack pnpm@10.15.1 build`: exit 0; Next.js 15.5.21 generated six static
+  routes.
+- `corepack pnpm@10.15.1 audit`: exit 0; no known vulnerabilities.
+- `corepack pnpm@10.15.1 audit --json`: exit 0; all severity counts 0.
+- `corepack pnpm@10.15.1 list next react react-dom eslint eslint-config-next`:
+  exit 0; versions match the table above.
+- `git diff --check`: exit 0; only line-ending warnings for existing/text files.
+- `git status --short`: exit 0.
+
+### Files changed
+
+- `package.json`
+- `pnpm-lock.yaml`
+- `eslint.config.mjs`
+- `docs/BASELINE_AUDIT.md`
+- `docs/DEPENDENCY_REMEDIATION.md`
+
+No application source, legal wording, design system, route, contact, media,
+bilingual, deployment, or external-service files were changed.
+
+### Rollback
+
+Use the rollback procedure in `docs/DEPENDENCY_REMEDIATION.md`. The safe
+rollback point is the pre-Phase-1A package/config state; do not deploy the old
+vulnerable dependency set without an explicit security decision.

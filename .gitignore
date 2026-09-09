@@ -53,3 +53,6 @@ dev-server*.log
 graphify-out/
 
 design-references/
+
+# Local Netlify folder
+.netlify

@@ -130,3 +130,86 @@ Avoid:
 - Neon particle storms
 - Generic handshake photography
 - Fake readable customer data
+
+# Visual direction
+
+## Brand character
+
+The website represents a practical digitalization consultancy for small
+businesses. It should feel professional, calm, understandable, modern,
+trustworthy, and personal.
+
+It must not look like a crypto project, enterprise SaaS platform, cybersecurity
+company, or experimental AI startup.
+
+## Overall design
+
+- Clean corporate design
+- Predominantly light theme
+- Warm white and light-neutral backgrounds
+- Dark navy or charcoal typography
+- Restrained blue accent color
+- Generous whitespace
+- Large but restrained typography
+- Soft borders and shadows
+- Limited use of rounded corners
+- No neon gradients
+- No glowing purple SaaS effects
+- No abstract 3D technology objects
+- No excessive animation
+
+## Hero
+
+- Full-width cinematic hero
+- Use the paper-to-digital video as the central visual
+- Strong readable headline
+- Text must remain readable over the video
+- Primary CTA: Kostenloses Erstgespräch
+- Secondary CTA: Digitalisierungs-Check
+- The hero must communicate paper burden becoming digital clarity
+- No fake dashboard screenshot floating over the video
+- No generated text embedded in the video
+- Provide a static poster fallback
+- Provide reduced-motion behavior
+
+## Homepage hierarchy
+
+1. Header
+2. Cinematic hero
+3. Typical customer problems
+4. Four services
+5. Before-and-after transformation
+6. How we work
+7. Practical use cases
+8. Why work with us
+9. Digitalization check
+10. FAQ
+11. Final CTA
+12. Footer
+
+## Services
+
+- Dokumentenmanagement
+- KI-Beratung und Automatisierung
+- Datenanalyse
+- Dashboards und Reporting
+
+## Components to remove from the original template
+
+- Cryptocurrency or Web3 language
+- SaaS-product marketing
+- Pricing tables
+- Fake testimonials
+- Fake customer logos
+- Fake statistics
+- Product login and signup CTAs
+- Dark glowing technology illustrations
+
+## Responsive behavior
+
+- Desktop: editorial layout with generous spacing
+- Tablet: simplified columns
+- Mobile: single-column content
+- Hero animation should be simplified on mobile
+- No horizontal overflow
+- Buttons should remain easily tappable

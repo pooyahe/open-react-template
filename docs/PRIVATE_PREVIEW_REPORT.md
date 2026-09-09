@@ -1,11 +1,39 @@
 # Private Preview Report
 
+## Git-connected deployment evidence — 2026-08-11
+
+Status: deployment succeeded, but Phase 8 is **not fully passed** because authenticated real-host browser validation could not be completed in this execution environment.
+
+- Project: `aktenkompass` (linked repository confirmed by `netlify status`)
+- Repository: `https://github.com/pooyahe/open-react-template`
+- Branch: `chore/deployment-readiness`
+- Commit: `1ed9e8312e515474a9474d7861d413ed961d0eac`
+- Preview deploy: `6a7b78a8f8a9a70008194128`
+- Build: `6a7b78a8f8a9a70008194126`
+- Preview URL: `https://deploy-preview-1--aktenkompass.netlify.app`
+- Context: `deploy-preview`
+- Framework: `next`
+- Deploy state: `ready`
+- `manual_deploy`: `false`
+- `plugin_state`: `success`
+- Build command: `corepack pnpm@10.15.1 build`
+- Publish directory: `.next`
+- Node: `.nvmrc` specifies `24.18.0`
+
+Netlify generated one `___netlify-server-handler` function named `Next.js Server Handler`, using `@netlify/plugin-nextjs@5.15.13`, bootstrap version `2.18.0`, runtime API version `2`, Node runtime `nodejs24.x`, and a catch-all `/*` route. Netlify reported three redirects and one header rule processed. This confirms native Next.js/OpenNext processing and runtime routing; no application source change or `@netlify/plugin-nextjs` dependency was added.
+
+The prior manual `.next` upload is not this deployment: it had no commit SHA or build ID. The Git-connected deploy has both, and `manual_deploy=false`.
+
+Unauthenticated HTTPS probes to the preview returned `401` with `X-Robots-Tag: noindex` for `/`, `/impressum`, `/datenschutz`, `/robots.txt`, `/sitemap.xml`, and an unknown route. The available browser runtime could not connect to a signed-in session, so authenticated page content, security headers, CSP, storage/cookies, network behavior, responsive behavior, accessibility, performance, and application 404 handling remain pending.
+
+The requested CLI deploy-log command returned `404 Not Found`; deploy/build API metadata still confirms a completed Git build and native runtime deployment. No redeploy was performed.
+
 ## Status
 
-Repository preparation and local validation are complete. No Netlify project was created, no repository was connected, and no external deployment action was performed. The preview URL is therefore:
+Git-connected preview deployment is complete and ready. Phase 8 remains not fully passed until the authenticated real-host validation matrix is executed.
 
 ```text
-PENDING — external deployment requires explicit authorization
+https://deploy-preview-1--aktenkompass.netlify.app
 ```
 
 ## 1. Deployment architecture
@@ -21,7 +49,7 @@ Netlify's current documentation states that App Router, SSR, route handlers, ima
 
 ## 2. Repository and branch
 
-The repository and preview branch were confirmed during the Phase 8 context interview. `main` remains the future production branch. No Git commit was created.
+The repository and preview branch were confirmed by the Git-connected deploy. Netlify built commit `1ed9e8312e515474a9474d7861d413ed961d0eac` from `chore/deployment-readiness`; the PR was not merged. `master` remains the requested base branch.
 
 ## 3. Netlify project configuration
 
@@ -125,9 +153,8 @@ Not reviewed or accepted in this phase. Netlify's actual data-processing terms, 
 
 ## 17. Remaining preview issues
 
-- External deployment authorization is pending.
-- Actual Netlify project/site identifier and visibility setting are unknown.
-- Actual preview URL and HTTPS response headers are unknown.
+- Authenticated real-host route and browser validation is pending because the execution browser could not retain the Netlify access-gate session.
+- Application response security headers and CSP behavior are not yet verified on the authenticated preview response.
 - Real-host CSP report-only console behavior is unknown.
 - Provider privacy/DPA review is incomplete.
 
