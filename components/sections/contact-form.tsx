@@ -24,21 +24,20 @@ export default function ContactForm() {
     setFeedback("");
 
     const formData = new FormData(form);
-    const payload = {
-      ...Object.fromEntries(formData.entries()),
-      privacyAccepted: formData.get("privacyAccepted") === "on",
-    };
+    const encoded = new URLSearchParams();
+    formData.forEach((value, key) => {
+      if (typeof value === "string") encoded.append(key, value);
+    });
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encoded.toString(),
       });
-      const result = (await response.json()) as { message?: string };
 
       if (!response.ok) {
-        throw new Error(result.message || "Die Nachricht konnte nicht gesendet werden.");
+        throw new Error("Die Nachricht konnte nicht gesendet werden.");
       }
 
       form.reset();
@@ -51,7 +50,8 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[1.25rem] bg-white p-6 text-[var(--ink)] shadow-[0_24px_70px_rgba(0,0,0,0.2)] sm:p-8" noValidate>
+    <form name="aktenkompass-contact" method="POST" data-netlify="true" data-netlify-honeypot="website" onSubmit={handleSubmit} className="rounded-[1.25rem] bg-white p-6 text-[var(--ink)] shadow-[0_24px_70px_rgba(0,0,0,0.2)] sm:p-8" noValidate>
+      <input type="hidden" name="form-name" value="aktenkompass-contact" />
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className="field-label" htmlFor="contact-name">Name *</label>

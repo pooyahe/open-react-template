@@ -10,18 +10,17 @@ not a penetration test or legal advice.
 - Approved operator/legal information
 - Local fonts, poster, and future hero media
 - GitHub source and deployment artifacts
-- Future Brevo API credential
-- Future contact messages and mailbox access
+- Contact submissions and mailbox access
 
 ## 2. Trust boundaries
 
 1. Visitor browser to the public Next.js application origin
 2. Static application origin to the hosting/build provider
-3. Future contact endpoint to Brevo and the IONOS mailbox
-4. Operator access to GitHub, Netlify, IONOS, and Brevo consoles
+3. Contact form to Netlify Forms and the optional IONOS notification
+4. Operator access to GitHub, Netlify, and IONOS consoles
 
-The current runtime has no visitor-controlled input boundary beyond normal
-browser navigation and no application data store.
+The contact form is a visitor-controlled input boundary. Submissions are stored
+by Netlify Forms; the application itself has no database.
 
 ## 3. Public attack surface
 
@@ -55,16 +54,13 @@ present in the current source.
 - HTML/script injection in message handling
 - Log injection and accidental sensitive-data logging
 - Rate-limit bypass and denial of service
-- Brevo API abuse or sender spoofing
-- Server-secret exposure
+- Netlify Forms spam or notification abuse
 - Sensitive or confidential visitor submissions
 
 ## 6. Existing mitigations
 
-- The contact endpoint uses field and body-size limits, a honeypot, bounded
-  per-instance rate limiting, an operator-controlled sender, and a validated
-  Reply-To address
-- No contact-submission database exists
+- The contact form uses browser validation plus Netlify's honeypot and spam filtering
+- No application-owned contact-submission database exists
 - No uploads are accepted
 - No browser storage, analytics, or third-party runtime scripts exist
 - Local fonts and media avoid external runtime dependencies
@@ -75,13 +71,9 @@ present in the current source.
 
 ## 7. Required future mitigations
 
-The future endpoint must use server-side schema validation, field length limits,
-request-body limits, a honeypot, rate limiting, generic client errors, no file
-uploads, no database, safe Brevo request construction, a validated Reply-To,
-an operator-controlled From address, and no full message content in logs.
-
-BREVO_API_KEY must remain server-only. The endpoint must not accept a
-visitor-controlled From address or construct unsanitized email headers.
+Netlify form detection, notification settings, access controls, spam handling,
+and submission retention must be reviewed in the provider console. File uploads
+remain disabled.
 
 ## 8. Residual risks
 
@@ -98,8 +90,7 @@ visitor-controlled From address or construct unsanitized email headers.
 - HTTPS, redirect policy, and production-only HSTS
 - Netlify access control, deploy-preview privacy, logs, build environment, and
   rollback permissions
-- Secret storage and preview/production environment separation
-- Provider monitoring and abuse/rate-limit controls for a future endpoint
+- Netlify Forms detection, notifications, spam filtering, access, and retention
 
 ## 10. Incident-response assumptions
 

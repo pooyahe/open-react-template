@@ -15,7 +15,7 @@ that origin without changing the same-origin resource model.
 | Visitor browser | Same-origin compiled Nacelle font assets | Initial page load | HTTP request metadata; font resource request | Render the approved local typography | No browser storage observed | Not applicable in app | Next.js local font handling | CURRENT |
 | Visitor browser | Same-origin /impressum and /datenschutz | Footer/legal navigation | HTTP request metadata; route/resource URLs | Display legal information | No application storage observed | Not applicable in app | Next.js app | CURRENT |
 | Visitor browser | Same-origin anchor targets | Header/navigation or CTA interaction | No new external data; URL fragment | Move within the page | No application storage observed | Not applicable | Browser navigation | CURRENT |
-| Visitor browser | Same-origin /api/contact | Contact-form submission | Name, email, message, optional company and telephone | Deliver a non-binding inquiry | No application database | Provider-side logs and mailbox retention require final review | Next.js route; Brevo and IONOS downstream | IMPLEMENTED |
+| Visitor browser | Same-origin Netlify Forms endpoint | Contact-form submission | Name, email, message, optional company and telephone | Deliver a non-binding inquiry | Netlify Forms submission storage | Provider-side retention requires final review | Netlify; optional IONOS notification | IMPLEMENTED |
 
 The browser test observed no request to an external hostname at either tested
 viewport. All observed requests were same-origin resources, including the
@@ -27,11 +27,11 @@ unreferenced public/videos/video.mp4.
 | Source | Destination | Trigger | Data categories | Purpose | Storage | Retention | Provider | Status |
 |---|---|---|---|---|---|---|---|---|
 | Visitor's mail client | info@aktenkompass.de | Visitor chooses the direct-email fallback | Email address, headers, and message content supplied by visitor | Non-binding introductory conversation | IONOS mailbox; no application database | Policy recorded in deployment context; legal review remains required | IONOS | AVAILABLE |
-| Server-side contact route | Brevo API, then info@aktenkompass.de | Validated contact-form submission | Name, company, email, optional telephone, message | Notification to the operator | No application database; full message content is not logged | Six-month policy and deletion rules recorded in deployment context | Brevo and IONOS | IMPLEMENTED; PRODUCTION SECRET REQUIRED |
+| Netlify Forms | Netlify project administration; optional info@aktenkompass.de notification | Contact-form submission | Name, company, email, optional telephone, message | Store and notify the operator | Netlify Forms | Six-month policy and deletion rules recorded in deployment context | Netlify and optionally IONOS | IMPLEMENTED; UI ACTIVATION REQUIRED |
 | Git repository and deployment pipeline | Netlify | Future preview or production deployment | Source code, build metadata, deployment logs | Host and deploy the application | Provider-controlled build/deploy records | Provider policy not yet documented here | Netlify | PLANNED / DOMAIN NOT CONNECTED |
 
-The contact-form and server-side Brevo flow are implemented. No database,
-upload, analytics, marketing, or nonessential browser-storage flow is present.
+The contact form uses Netlify Forms and no application database. No upload,
+analytics, marketing, or nonessential browser-storage flow is present.
 
 ## Evidence limitations
 

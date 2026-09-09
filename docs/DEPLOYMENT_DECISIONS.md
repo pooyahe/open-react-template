@@ -13,10 +13,9 @@ here. Open questions and gates remain in `DEPLOYMENT_CONTEXT.md` and
 | Prefer Netlify team-login/private visibility for the preview when available on Free | Keeps preview access restricted without an automatic plan upgrade | Confirmed preference; Free-plan seat/access limits require verification in the Netlify UI |
 | Use IONOS for the domain, DNS, and mailbox | Existing ownership and mailbox at `info@aktenkompass.de` | Confirmed |
 | Use `aktenkompass.de` as the canonical no-www hostname | Explicit operator choice | Confirmed; DNS connection requires approval |
-| Use Brevo Transactional Email API only for server-side form notifications | Keeps visitor address in Reply-To, avoids spoofing, and separates mailbox from transactional delivery | Implemented; domain authentication confirmed by operator on 2026-09-09 |
-| Use info@aktenkompass.de as both the verified sender and recipient | Avoids depending on a nonexistent website@ mailbox; visitor address remains Reply-To | Confirmed by implementation after domain authentication |
-| Keep mailto as the fallback until Brevo is ready | Preserves a functioning low-complexity conversion path | Confirmed |
-| Do not store contact submissions in an application database | Minimizes personal-data processing and infrastructure | Confirmed |
+| Use Netlify Forms for contact submissions and notifications | Removes the separate Brevo credential and uses the existing hosting platform | Implemented; Netlify form detection and notification require one-time UI configuration |
+| Keep info@aktenkompass.de as the direct-email fallback and notification recipient | Preserves a simple contact path | Confirmed |
+| Do not store contact submissions in an application database | Netlify Forms is the only form store | Confirmed |
 | Do not allow uploads, auto-confirmations, complete-content logs, analytics, or nonessential cookies/storage | Explicit scope and privacy minimization | Confirmed |
 | Require server-side form validation, size limits, rate limiting, and honeypot | Basic abuse and input protection before enabling form delivery | Implemented; hosting-level rate-limit hardening remains recommended |
 | Require SPF, DKIM, and DMARC before public launch | Reliable and safer sender authentication | Confirmed launch gate |

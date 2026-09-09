@@ -24,9 +24,9 @@ public contact details are operational context, not credentials.
 | Form fields | Name, company, email, optional telephone, message | Context interview | CONFIRMED | Personal data | Minimize collection and document purpose/retention |
 | File uploads | Disabled | Context interview | NOT_APPLICABLE | Personal data | No multipart upload handling or file-retention risk |
 | Mailbox provider | IONOS; info@aktenkompass.de | Context interview | CONFIRMED | Operational | Document IONOS data flow and mailbox access controls |
-| Transactional email | Brevo Transactional Email API; From and To info@aktenkompass.de, Reply-To validated visitor email | Implementation decision; operator confirmation 2026-09-09 | IMPLEMENTED / RUNTIME_TEST_PENDING | Credential/data flow | Domain authentication confirmed; keep BREVO_API_KEY server-side and verify one production delivery after deployment |
-| Submission storage | No application database; no automatic visitor confirmation; no complete message-content logging | Context interview | CONFIRMED | Personal data | Route-handler design must be stateless and log-minimal |
-| Form protections | Server-side validation, request-size limits, bounded per-instance rate limiting, honeypot | Implementation 2026-09-09 | IMPLEMENTED | Security | Add hosting-level durable rate limiting if abuse appears |
+| Contact form delivery | Netlify Forms with optional notification to info@aktenkompass.de | Implementation decision 2026-09-09 | IMPLEMENTED / NOTIFICATION_PENDING | Data flow | Enable form detection and configure the notification in Netlify |
+| Submission storage | Netlify Forms stores submissions in the protected project administration; no application database | Implementation decision 2026-09-09 | CONFIRMED | Personal data | Define retention and restrict Netlify account access |
+| Form protections | Browser validation plus Netlify honeypot and spam filtering | Implementation 2026-09-09 | IMPLEMENTED | Security | Monitor verified and spam submissions in Netlify |
 | Retention | Ordinary inquiries: six months after last substantive communication; irrelevant/declined messages generally 30 days; spam/test immediately or within seven days; sensitive data deleted when no longer needed; project records assessed separately; monthly review | Context interview | LEGAL_REVIEW_REQUIRED | Personal data | State as an operator policy, not a statutory fixed period; document deletion responsibility |
 | Message handling | Pouya Hedayati only; business-day review, normally response within two business days | Context interview | CONFIRMED | Personal data | Restrict mailbox access and document incident/data-subject handling |
 | Hosting | Netlify Free for private preview and initial public landing page | Context interview | CONFIRMED | Operational | No paid auto-recharge/add-ons; monitor usage; document Netlify DPA and actual data flows |
@@ -63,8 +63,8 @@ public contact details are operational context, not credentials.
   current German-first architecture documents.
 - Final hero media, rights/approval, dimensions, and measured size limits are
   outstanding.
-- Brevo domain authentication is confirmed. A successful production form
-  delivery and sender/API-key configuration check remain outstanding.
+- Netlify form detection, an email notification, and one production submission
+  remain to be confirmed in the Netlify project.
 - Netlify DPA review and the final provider data-flow/privacy wording are
   outstanding.
 - The public domain must not be connected without explicit authorization.

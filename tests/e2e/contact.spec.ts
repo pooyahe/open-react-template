@@ -10,8 +10,14 @@ test("contact form exposes labeled fields and privacy information", async ({ pag
 });
 
 test("contact form reports a successful same-origin submission", async ({ page }) => {
-  await page.route("**/api/contact", async (route) => {
-    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ message: "ok" }) });
+  let submittedBody = "";
+  await page.route("**/*", async (route) => {
+    if (route.request().method() === "POST") {
+      submittedBody = route.request().postData() || "";
+      await route.fulfill({ status: 200, contentType: "text/html", body: "ok" });
+      return;
+    }
+    await route.continue();
   });
   await page.goto("/#kontakt");
 
@@ -23,22 +29,13 @@ test("contact form reports a successful same-origin submission", async ({ page }
 
   await expect(page.getByRole("status")).toContainText("erfolgreich gesendet");
   await expect(page.getByLabel("Name *")).toHaveValue("");
+  expect(submittedBody).toContain("form-name=aktenkompass-contact");
 });
 
-test("contact endpoint rejects invalid input and absorbs honeypot submissions", async ({ request }) => {
-  const invalid = await request.post("/api/contact", {
-    data: { name: "X", email: "invalid", message: "short", privacyAccepted: false },
-  });
-  expect(invalid.status()).toBe(400);
-
-  const bot = await request.post("/api/contact", {
-    data: {
-      name: "Bot Example",
-      email: "bot@example.com",
-      message: "This is a sufficiently long automated message.",
-      website: "spam.example",
-      privacyAccepted: true,
-    },
-  });
-  expect(bot.status()).toBe(200);
+test("contact form exposes Netlify form metadata and a honeypot", async ({ page }) => {
+  await page.goto("/#kontakt");
+  const form = page.locator('form[name="aktenkompass-contact"]');
+  await expect(form).toHaveAttribute("method", "POST");
+  await expect(form.locator('input[name="form-name"]')).toHaveValue("aktenkompass-contact");
+  await expect(form.locator('input[name="website"]')).toHaveAttribute("tabindex", "-1");
 });
