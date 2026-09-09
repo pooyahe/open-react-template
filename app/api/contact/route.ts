@@ -128,9 +128,15 @@ export async function POST(request: NextRequest) {
         { status: 502 },
       );
     }
-    if (response.status === 401 || response.status === 403) {
+    if (response.status === 401) {
       return NextResponse.json(
-        { message: "Brevo hat den API-Zugang abgelehnt. Bitte prüfen Sie den API-Schlüssel und den aktivierten Transaktionsversand." },
+        { message: "Brevo-Fehler 401: Der verwendete API-Schlüssel ist ungültig. Bitte prüfen Sie Wert und Deployment-Kontext in Netlify." },
+        { status: 502 },
+      );
+    }
+    if (response.status === 403) {
+      return NextResponse.json(
+        { message: "Brevo-Fehler 403: Der Schlüssel wurde erkannt, aber der Transaktionsversand ist für dieses Brevo-Konto nicht freigeschaltet." },
         { status: 502 },
       );
     }
