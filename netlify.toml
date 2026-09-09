@@ -6,6 +6,10 @@
   DEPLOYMENT_ENV = "preview"
   SEO_INDEXING_ENABLED = "false"
 
+[context.production.environment]
+  DEPLOYMENT_ENV = "production"
+  SEO_INDEXING_ENABLED = "true"
+
 [context.deploy-preview.environment]
   DEPLOYMENT_ENV = "preview"
   SEO_INDEXING_ENABLED = "false"

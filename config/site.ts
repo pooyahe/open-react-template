@@ -14,4 +14,8 @@ export const siteConfig = {
   email: "info@aktenkompass.de",
   phone: "+49 176 57739809",
   city: "München, Bayern",
+  contact: {
+    emailSubject: "Anfrage zur Digitalisierung",
+    consultationSubject: "Anfrage für ein unverbindliches Erstgespräch",
+  },
 } as const;

@@ -58,7 +58,28 @@ test("homepage renders an actionable primary CTA", async ({ page }) => {
   ).toBeVisible();
   const cta = page.getByRole("link", { name: "Kostenloses Erstgespräch" }).first();
   await expect(cta).toBeVisible();
-  await expect(cta).toHaveAttribute("href", "#kontakt");
+  await expect(cta).toHaveAttribute("href", /mailto:info@aktenkompass\.de\?subject=/);
+});
+
+test("contact actions provide real email and telephone paths", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.getByRole("link", { name: "Problem beschreiben" })).toHaveAttribute(
+    "href",
+    /mailto:info@aktenkompass\.de\?subject=/,
+  );
+  await expect(page.getByRole("link", { name: "Erstgespräch vereinbaren" })).toHaveAttribute(
+    "href",
+    /mailto:info@aktenkompass\.de\?subject=/,
+  );
+  await expect(page.getByRole("link", { name: "Direkt anrufen" })).toHaveAttribute(
+    "href",
+    "tel:+4917657739809",
+  );
+  await expect(page.getByRole("link", { name: "info@aktenkompass.de" })).toHaveAttribute(
+    "href",
+    "mailto:info@aktenkompass.de",
+  );
 });
 
 test("skip link moves focus to the main content", async ({ page }) => {
@@ -196,8 +217,7 @@ test("keyboard smoke test keeps principal controls operable", async ({ page }) =
   const cta = page.getByRole("link", { name: "Kostenloses Erstgespräch" }).first();
   await cta.focus();
   await expect(cta).toBeFocused();
-  await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(/#kontakt$/);
+  await expect(cta).toHaveAttribute("href", /mailto:info@aktenkompass\.de\?subject=/);
 });
 
 test("homepage has no unintended horizontal overflow at required widths", async ({ page }) => {

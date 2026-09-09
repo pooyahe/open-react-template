@@ -8,6 +8,7 @@ import UseCases from "@/components/sections/use-cases";
 import Contact from "@/components/sections/contact";
 import { homepageContent } from "@/content/homepage";
 import { routeMetadata } from "@/config/seo";
+import { siteConfig } from "@/config/site";
 
 export const metadata = routeMetadata(
   "Dokumentenmanagement für kleine Unternehmen",
@@ -29,7 +30,7 @@ export default function Home() {
                 <h1 className="min-w-0 max-w-full text-4xl font-bold leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:max-w-xl lg:text-7xl">{homepageContent.hero.title}</h1>
                 <p className="mt-7 min-w-0 max-w-full text-lg leading-8 text-slate-100 sm:text-xl lg:max-w-xl">{homepageContent.hero.text}</p>
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <a className="button-primary" href="#kontakt">{homepageContent.hero.primaryCta}</a>
+                  <a className="button-primary" href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(siteConfig.contact.consultationSubject)}`}>{homepageContent.hero.primaryCta}</a>
                   <a className="button-secondary button-secondary-dark" href="#probleme">{homepageContent.hero.secondaryCta}</a>
                 </div>
               </div>
@@ -45,7 +46,7 @@ export default function Home() {
       <section className="section-space bg-[var(--soft-blue)]">
         <div className="site-container">
           <SectionHeading eyebrow="Der nächste Schritt" title="Digitalisierung darf verständlich beginnen" text="Sie müssen nicht alles auf einmal verändern. Gemeinsam klären wir, welcher Prozess zuerst betrachtet werden sollte." align="center" />
-          <div className="mt-8 text-center"><a className="button-primary" href="#kontakt">Kostenloses Erstgespräch</a></div>
+          <div className="mt-8 text-center"><a className="button-primary" href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(siteConfig.contact.consultationSubject)}`}>Kostenloses Erstgespräch</a></div>
         </div>
       </section>
       <Contact />
