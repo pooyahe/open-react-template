@@ -1,11 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/public/images/logo.svg";
+import { siteConfig } from "@/config/site";
 
 export default function Logo() {
-  return (
-    <Link href="/" className="inline-flex shrink-0" aria-label="Cruip">
-      <Image src={logo} alt="Cruip Logo" width={32} height={32} />
-    </Link>
-  );
+  return <Link href="/" className="brand-mark" aria-label={`${siteConfig.name} Startseite`}><Image src="/images/AktenKompass-logo.svg" alt="" width={42} height={42} priority />{siteConfig.name}</Link>;
 }

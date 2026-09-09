@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">AktenKompass logo</title>
+  <desc id="desc">A document outline with a compass needle and four digital squares.</desc>
+
+  <defs>
+    <linearGradient id="aktenkompass-gradient" x1="82" y1="94" x2="424" y2="424" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#356AE6"/>
+      <stop offset="0.52" stop-color="#168FE0"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Open document outline -->
+  <path
+    d="M326 104H164c-43 0-68 25-68 68v174c0 43 25 68 68 68h172c43 0 68-25 68-68v-60M326 104v86h54"
+    fill="none"
+    stroke="url(#aktenkompass-gradient)"
+    stroke-width="56"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Compass needle -->
+  <g transform="rotate(45 242 276)">
+    <path d="M242 174 282 276 242 378 202 276Z" fill="#0B1F33"/>
+    <path d="M242 174 242 276 202 276Z" fill="#173B5E"/>
+    <circle cx="242" cy="276" r="17" fill="#F7FAFC"/>
+    <circle cx="242" cy="276" r="8" fill="#0B1F33"/>
+  </g>
+
+  <!-- Restrained digital transition -->
+  <rect x="356" y="210" width="58" height="58" rx="12" fill="#14B8A6"/>
+  <rect x="380" y="142" width="50" height="50" rx="10" fill="#12A7BE"/>
+  <rect x="420" y="88" width="40" height="40" rx="8" fill="#168FE0"/>
+  <rect x="454" y="48" width="30" height="30" rx="6" fill="#356AE6"/>
+</svg>

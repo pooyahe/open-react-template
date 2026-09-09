@@ -37,3 +37,22 @@ next-env.d.ts
 
 # contentlayer
 .contentlayer
+.codex-log/
+.codex/sessions/
+.codex/history/
+coverage/
+playwright-report/
+test-results/
+blob-report/
+graphify-out/*.html
+
+# Local development logs
+dev-server*.log
+
+# Generated Graphify output
+graphify-out/
+
+design-references/
+
+# Local Netlify folder
+.netlify

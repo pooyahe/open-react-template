@@ -1,0 +1,29 @@
+Codex overlay (merge into existing open-react-template)
+├── AGENTS.md
+├── TASK.md
+├── START_CODEX.md
+├── README.PROJECT.md
+├── SKILLS.md
+├── .agents/skills/
+├── .codex/agents/
+├── .codex/config.toml
+├── docs/
+│   ├── PRD.md
+│   ├── CONTENT.md
+│   ├── DESIGN_SYSTEM.md
+│   ├── ARCHITECTURE.md
+│   ├── TEST_STRATEGY.md
+│   ├── ASSET_MANIFEST.md
+│   ├── SEO_AND_COMPLIANCE.md
+│   ├── DECISIONS.md
+│   └── TEMPLATE_AUDIT.md
+├── planning/GSD_BOOTSTRAP.md
+├── graphify/
+├── scripts/
+│   ├── merge-into-template.ps1
+│   ├── setup-ai-tools.ps1
+│   ├── setup-ai-tools.sh
+│   └── verify.ps1
+└── public/
+    ├── brand/README.md
+    └── media/hero/README.md
