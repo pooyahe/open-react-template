@@ -7,10 +7,10 @@ export const isIndexableDeployment =
   process.env.SEO_INDEXING_ENABLED === "true";
 
 const socialImage = {
-  url: `${canonicalUrl}/media/hero/hero-poster.webp`,
-  width: 2208,
-  height: 1152,
-  alt: "Arbeitsplatz mit Laptop und digitalen Unterlagen",
+  url: `${canonicalUrl}/images/heroimage.png`,
+  width: 1672,
+  height: 941,
+  alt: "Digitale Dokumentenverwaltung am Arbeitsplatz",
 };
 
 export function routeMetadata(title: string, description: string, path: string): Metadata {

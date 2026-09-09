@@ -12,6 +12,9 @@ test("preview metadata is fail-safe and German-first", async ({ page, request })
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex.*nofollow/);
   await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
   await expect(page.locator('link[rel="icon"]')).toHaveAttribute("href", /icon\.svg/);
+  await expect(page.locator('script[type="application/ld+json"]')).toContainText(
+    '"@type":"WebSite"',
+  );
   await expect(page.locator("head")).not.toContainText(/Cruip|Open Pro|SaaS|Web3|crypto/i);
 
   const robotsResponse = await request.get("/robots.txt");

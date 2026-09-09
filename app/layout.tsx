@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import type { Metadata } from "next";
 import Header from "@/components/ui/header";
 import { isIndexableDeployment } from "@/config/seo";
+import { serializedWebsiteStructuredData } from "@/config/structured-data";
 
 const siteFont = localFont({
   src: [
@@ -30,6 +31,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializedWebsiteStructuredData }}
+        />
+      </head>
       <body className={`${siteFont.variable} bg-[var(--page-bg)] font-site text-base text-[var(--ink)] antialiased`}>
         <a className="skip-link" href="#main-content">Zum Inhalt springen</a>
         <div className="flex min-h-screen flex-col">

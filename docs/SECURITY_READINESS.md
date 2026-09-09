@@ -12,8 +12,7 @@ was made in Phase 4.
 
 Before Phase 4, next.config.js had no response-header policy. After Phase 4:
 
-- Enforced CSP clickjacking directive: frame-ancestors none
-- CSP full policy: report-only
+- Enforced CSP covering same-origin resources, forms, framing, and connections
 - X-Content-Type-Options: nosniff
 - X-Frame-Options: DENY
 - Referrer-Policy: strict-origin-when-cross-origin
@@ -27,14 +26,13 @@ preload directive is used.
 
 ## 3. CSP design and status
 
-Status: report-only for the broad policy, with enforced frame-ancestors.
+Status: enforced.
 
 The policy permits only same-origin defaults, scripts, connections, media,
-fonts, workers, and images. data: is allowed only for images. Inline styles
-remain allowed for current framework/style behavior; unsafe-eval is absent.
-The policy is report-only until browser and production-preview validation
-confirms that Next.js runtime behavior does not require a different nonce/hash
-strategy.
+fonts, workers, and images. data: is allowed only for images. Inline scripts
+and styles remain allowed for current Next.js framework behavior; unsafe-eval
+is absent. Moving to a nonce/hash-based script policy remains optional future
+hardening.
 
 ## 4. Environment-variable assessment
 
@@ -79,7 +77,7 @@ remain outside this provider-independent phase.
 
 - Netlify security and DPA review
 - Production-only HSTS configuration after HTTPS/domain authorization
-- CSP enforcement review on a real preview
+- Optional nonce/hash-based CSP hardening
 - Future contact endpoint threat-control implementation
 - Font licensing confirmation
 

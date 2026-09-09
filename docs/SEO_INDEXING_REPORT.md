@@ -75,7 +75,10 @@ The deployment decisions contain an older broad â€œGerman and English at launchâ
 
 ## 9. Structured-data decision
 
-No JSON-LD was added. A conservative `Person` schema could be technically accurate, but structured data is not required for this small pre-launch landing page and the legal/business distinction between the natural-person operator and a business organization should remain explicit. No organization, review, rating, price, certification, or customer schema is emitted.
+A conservative `WebSite` JSON-LD object describes only the verified site name,
+canonical URL, description, language, and schema context. It deliberately does
+not claim an incorporated organization and emits no review, rating, price,
+certification, customer, or unsupported local-business data.
 
 ## 10. Social-preview asset status
 
