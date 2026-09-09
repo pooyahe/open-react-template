@@ -41,22 +41,23 @@ export default function ContactForm() {
           <p className="mt-4 leading-7 text-[var(--muted)]">Beschreiben Sie kurz Ihre aktuelle Herausforderung. Wir melden uns für ein unverbindliches Erstgespräch.</p>
           <p className="mt-5 text-sm leading-6 text-[var(--muted)]">Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet. Pflichtfelder sind mit * gekennzeichnet.</p>
         </div>
-        <form className="grid gap-4" onSubmit={submit} noValidate>
+        <form className="grid gap-4 rounded-xl border-2 border-blue-100 bg-[var(--page-bg)] p-4 sm:p-5" onSubmit={submit} noValidate>
+          <p className="-mb-1 text-sm font-semibold text-[var(--ink)]">Beginnen Sie hier – wir melden uns innerhalb von zwei Werktagen.</p>
           <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
             <label htmlFor="website">Website</label>
             <input id="website" name="website" tabIndex={-1} autoComplete="off" />
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <label className="grid gap-2 text-sm font-semibold" htmlFor="contact-name">Name *<input id="contact-name" name="name" required maxLength={100} autoComplete="name" className="form-input" /></label>
-            <label className="grid gap-2 text-sm font-semibold" htmlFor="contact-company">Unternehmen *<input id="contact-company" name="company" required maxLength={120} autoComplete="organization" className="form-input" /></label>
+            <label className="contact-form-label grid gap-2 text-sm font-semibold" htmlFor="contact-name">Name *<input id="contact-name" name="name" required maxLength={100} autoComplete="name" className="contact-form-field" /></label>
+            <label className="contact-form-label grid gap-2 text-sm font-semibold" htmlFor="contact-company">Unternehmen *<input id="contact-company" name="company" required maxLength={120} autoComplete="organization" className="contact-form-field" /></label>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <label className="grid gap-2 text-sm font-semibold" htmlFor="contact-email">E-Mail *<input id="contact-email" name="email" required type="email" maxLength={254} autoComplete="email" className="form-input" /></label>
-            <label className="grid gap-2 text-sm font-semibold" htmlFor="contact-phone">Telefon <input id="contact-phone" name="phone" type="tel" maxLength={40} autoComplete="tel" className="form-input" /></label>
+            <label className="contact-form-label grid gap-2 text-sm font-semibold" htmlFor="contact-email">E-Mail *<input id="contact-email" name="email" required type="email" maxLength={254} autoComplete="email" className="contact-form-field" /></label>
+            <label className="contact-form-label grid gap-2 text-sm font-semibold" htmlFor="contact-phone">Telefon <input id="contact-phone" name="phone" type="tel" maxLength={40} autoComplete="tel" className="contact-form-field" /></label>
           </div>
-          <label className="grid gap-2 text-sm font-semibold" htmlFor="contact-message">Ihre Herausforderung *<textarea id="contact-message" name="message" required maxLength={4000} rows={5} className="form-textarea" /></label>
+          <label className="contact-form-label grid gap-2 text-sm font-semibold" htmlFor="contact-message">Ihre Herausforderung *<textarea id="contact-message" name="message" required maxLength={4000} rows={5} className="contact-form-field" /></label>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <button className="button-primary" type="submit" disabled={state === "sending"}>{state === "sending" ? "Wird gesendet …" : "Anfrage senden"}</button>
+            <button className="button-primary contact-form-submit" type="submit" disabled={state === "sending"}>{state === "sending" ? "Wird gesendet …" : "Anfrage senden"}</button>
             <a className="text-sm font-semibold text-blue-700 underline underline-offset-4" href={`mailto:${siteConfig.email}`}>Alternativ per E-Mail</a>
           </div>
           <p aria-live="polite" className={state === "success" ? "text-sm font-semibold text-green-700" : "text-sm text-red-700"}>{state === "success" ? "Vielen Dank. Ihre Anfrage wurde übermittelt." : state === "error" ? error : ""}</p>
